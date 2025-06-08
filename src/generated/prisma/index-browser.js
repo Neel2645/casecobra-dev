@@ -132,6 +132,48 @@ exports.Prisma.ConfigurationScalarFieldEnum = {
   croppedImageUrl: 'croppedImageUrl'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  configurationId: 'configurationId',
+  userId: 'userId',
+  amount: 'amount',
+  isPaid: 'isPaid',
+  status: 'status',
+  shippingAddressId: 'shippingAddressId',
+  billingAddressId: 'billingAddressId',
+  createdAt: 'createdAt',
+  updated: 'updated'
+};
+
+exports.Prisma.ShippingAddressScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  street: 'street',
+  city: 'city',
+  postalCode: 'postalCode',
+  country: 'country',
+  state: 'state',
+  phoneNumber: 'phoneNumber'
+};
+
+exports.Prisma.BillingAddressScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  street: 'street',
+  city: 'city',
+  postalCode: 'postalCode',
+  country: 'country',
+  state: 'state',
+  phoneNumber: 'phoneNumber'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -171,8 +213,18 @@ exports.CaseFinish = exports.$Enums.CaseFinish = {
   textured: 'textured'
 };
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  fulfilled: 'fulfilled',
+  shipped: 'shipped',
+  awaiting_shipment: 'awaiting_shipment'
+};
+
 exports.Prisma.ModelName = {
-  Configuration: 'Configuration'
+  Configuration: 'Configuration',
+  User: 'User',
+  Order: 'Order',
+  ShippingAddress: 'ShippingAddress',
+  BillingAddress: 'BillingAddress'
 };
 
 /**

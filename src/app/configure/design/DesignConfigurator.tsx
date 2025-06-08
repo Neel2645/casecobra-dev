@@ -50,11 +50,8 @@ const DesignConfigurator = ({
       await Promise.all([saveConfiguration(), _saveConfig(args)])
     },
     onError: () => {
-      toast.error(
-        'Something went wrong')
-        // description: 'There was an error on our end. Please try again.',
-        // variant: 'destructive',
-      },
+      toast.error('Something went wrong')
+    },
     onSuccess: () => {
       router.push(`/configure/preview?id=${configId}`)
     },
