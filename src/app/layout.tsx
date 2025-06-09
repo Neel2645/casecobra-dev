@@ -5,13 +5,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import Providers from "@/components/Providers";
+import { constructMetadata } from "@/lib/utils";
 
 const recursive = Recursive({subsets : ['latin']});
 
-export const metadata: Metadata = {
-  title: "CaseCobra-dev",
-  description: "A Phone Case Building Website...!",
-};
+export const metadata = constructMetadata();
 
 export default function RootLayout({
   children,
