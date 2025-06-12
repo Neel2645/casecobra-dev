@@ -5,13 +5,13 @@ import { notFound } from "next/navigation";
 import DesignConfigurator from "./DesignConfigurator";
 
 interface PageProps {
-  searchParams: {
+  searchParams?: {
     [key: string]: string | string[] | undefined;
   };
 }
 
 const Page = async ({ searchParams }: PageProps) => {
-  const { id } = searchParams;
+  const  id  = searchParams?.id;
 
 
   if (!id || typeof id !== "string") {
