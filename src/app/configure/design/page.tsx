@@ -1,20 +1,55 @@
 
+// "use server";
+
+// import { db } from "@/db";
+// import { notFound } from "next/navigation";
+// import DesignConfigurator from "./DesignConfigurator";
+
+// const Page = async ({
+//   searchParams,
+// }: {
+//   searchParams?: { [key: string]: string | string[] | undefined };
+// }) => {
+//   const { id } = searchParams || {};
+
+//   if (!id || typeof id !== "string") {
+//     return notFound();
+//   }
+
+//   const configuration = await db.configuration.findUnique({
+//     where: { id },
+//   });
+
+//   if (!configuration) {
+//     return notFound();
+//   }
+
+//   const { imageUrl, width, height } = configuration;
+
+//   return (
+//     <DesignConfigurator
+//       configId={configuration.id}
+//       imageDimensions={{ width, height }}
+//       imageUrl={imageUrl}
+//     />
+//   );
+// };
+
+// export default Page;
+
+
 "use server";
 
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import DesignConfigurator from "./DesignConfigurator";
+import DesignConfigurator from "../DesignConfigurator"; // adjust path if needed
 
-const Page = async ({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) => {
-  const { id } = searchParams || {};
+type PageProps = {
+  params: { id: string };
+};
 
-  if (!id || typeof id !== "string") {
-    return notFound();
-  }
+const Page = async ({ params }: PageProps) => {
+  const { id } = params;
 
   const configuration = await db.configuration.findUnique({
     where: { id },
@@ -36,8 +71,6 @@ const Page = async ({
 };
 
 export default Page;
-
-
 
 
 
