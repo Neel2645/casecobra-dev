@@ -1,43 +1,81 @@
-// "use server"
+// // "use server"
 
-// import { db } from "@/db";
-// import { notFound } from "next/navigation";
-// import DesignConfigurator from "./DesignConfigurator";
+// // import { db } from "@/db";
+// // import { notFound } from "next/navigation";
+// // import DesignConfigurator from "./DesignConfigurator";
 
-// interface PageProps {
-//   searchParams: {
-//     [key: string]: string | string[] | undefined;
-//   };
-// }
+// // interface PageProps {
+// //   searchParams: {
+// //     [key: string]: string | string[] | undefined;
+// //   };
+// // }
 
-// const Page = async ({ searchParams }: PageProps) => {
-//   const { id } = searchParams;
+// // const Page = async ({ searchParams }: PageProps) => {
+// //   const { id } = searchParams;
 
 
-//   if (!id || typeof id !== "string") {
-//     return notFound();
-//   }
+// //   if (!id || typeof id !== "string") {
+// //     return notFound();
+// //   }
 
-//   const configuration = await db.configuration.findUnique({
-//     where: { id },
-//   });
+// //   const configuration = await db.configuration.findUnique({
+// //     where: { id },
+// //   });
 
-//   if (!configuration) {
-//     return notFound();
-//   }
+// //   if (!configuration) {
+// //     return notFound();
+// //   }
 
-//   const { imageUrl, width, height } = configuration;
+// //   const { imageUrl, width, height } = configuration;
 
-//   return (
-//     <DesignConfigurator
-//       configId={configuration.id}
-//       imageDimensions={{ width, height }}
-//       imageUrl={imageUrl}
-//     />
-//   );
-// };
+// //   return (
+// //     <DesignConfigurator
+// //       configId={configuration.id}
+// //       imageDimensions={{ width, height }}
+// //       imageUrl={imageUrl}
+// //     />
+// //   );
+// // };
 
-// export default Page;
+// // export default Page;
+
+// // "use server";
+
+// // import { db } from "@/db";
+// // import { notFound } from "next/navigation";
+// // import DesignConfigurator from "./DesignConfigurator";
+
+// // const Page = async ({
+// //   searchParams,
+// // }: {
+// //   searchParams?: { [key: string]: string | string[] | undefined };
+// // }) => {
+// //   const { id } = searchParams || {};
+
+// //   if (!id || typeof id !== "string") {
+// //     return notFound();
+// //   }
+
+// //   const configuration = await db.configuration.findUnique({
+// //     where: { id },
+// //   });
+
+// //   if (!configuration) {
+// //     return notFound();
+// //   }
+
+// //   const { imageUrl, width, height } = configuration;
+
+// //   return (
+// //     <DesignConfigurator
+// //       configId={configuration.id}
+// //       imageDimensions={{ width, height }}
+// //       imageUrl={imageUrl}
+// //     />
+// //   );
+// // };
+
+// // export default Page;
 
 // "use server";
 
@@ -45,11 +83,11 @@
 // import { notFound } from "next/navigation";
 // import DesignConfigurator from "./DesignConfigurator";
 
-// const Page = async ({
-//   searchParams,
-// }: {
+// interface PageProps {
 //   searchParams?: { [key: string]: string | string[] | undefined };
-// }) => {
+// }
+
+// const Page = async ({ searchParams }: PageProps) => {
 //   const { id } = searchParams || {};
 
 //   if (!id || typeof id !== "string") {
@@ -76,41 +114,3 @@
 // };
 
 // export default Page;
-
-"use server";
-
-import { db } from "@/db";
-import { notFound } from "next/navigation";
-import DesignConfigurator from "./DesignConfigurator";
-
-interface PageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-const Page = async ({ searchParams }: PageProps) => {
-  const { id } = searchParams || {};
-
-  if (!id || typeof id !== "string") {
-    return notFound();
-  }
-
-  const configuration = await db.configuration.findUnique({
-    where: { id },
-  });
-
-  if (!configuration) {
-    return notFound();
-  }
-
-  const { imageUrl, width, height } = configuration;
-
-  return (
-    <DesignConfigurator
-      configId={configuration.id}
-      imageDimensions={{ width, height }}
-      imageUrl={imageUrl}
-    />
-  );
-};
-
-export default Page;
