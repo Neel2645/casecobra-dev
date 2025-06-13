@@ -38,11 +38,9 @@
 // export default Page;
 
 
-"use server";
-
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import DesignConfigurator from "../DesignConfigurator"; // adjust path if needed
+import DesignConfigurator from "./DesignConfigurator"; // adjust path if needed
 
 type PageProps = {
   params: { id: string };
