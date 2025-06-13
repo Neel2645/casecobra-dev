@@ -5,8 +5,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -14,21 +14,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { db } from '@/db'
-import { formatPrice } from '@/lib/utils'
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
-import { notFound } from 'next/navigation'
-import StatusDropdown from './StatusDropdown'
+} from "@/components/ui/table";
+import { db } from "@/db";
+import { formatPrice } from "@/lib/utils";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { notFound } from "next/navigation";
+import StatusDropdown from "./StatusDropdown";
 
 const Page = async () => {
-  const { getUser } = getKindeServerSession()
-  const user = await getUser()
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
   if (!user || user.email !== ADMIN_EMAIL) {
-    return notFound()
+    return notFound();
   }
 
   const orders = await db.order.findMany({
@@ -39,13 +39,13 @@ const Page = async () => {
       },
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
     include: {
       user: true,
       shippingAddress: true,
     },
-  })
+  });
 
   const lastWeekSum = await db.order.aggregate({
     where: {
@@ -57,7 +57,7 @@ const Page = async () => {
     _sum: {
       amount: true,
     },
-  })
+  });
 
   const lastMonthSum = await db.order.aggregate({
     where: {
@@ -69,25 +69,25 @@ const Page = async () => {
     _sum: {
       amount: true,
     },
-  })
+  });
 
-  const WEEKLY_GOAL = 500
-  const MONTHLY_GOAL = 2500
+  const WEEKLY_GOAL = 500;
+  const MONTHLY_GOAL = 2500;
 
   return (
-    <div className='flex min-h-screen p-10 w-full bg-muted/40'>
-      <div className='max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4'>
-        <div className='flex flex-col gap-16'>
-          <div className='grid gap-4 sm:grid-cols-2'>
+    <div className="flex min-h-screen p-10 mb-40 w-full bg-muted/40">
+      <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
+        <div className="flex flex-col gap-16">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Card>
-              <CardHeader className='pb-2'>
+              <CardHeader className="pb-2">
                 <CardDescription>Last Week</CardDescription>
-                <CardTitle className='text-4xl'>
+                <CardTitle className="text-4xl">
                   {formatPrice(lastWeekSum._sum.amount ?? 0)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className='text-sm text-muted-foreground'>
+                <div className="text-sm text-muted-foreground">
                   of {formatPrice(WEEKLY_GOAL)} goal
                 </div>
               </CardContent>
@@ -98,14 +98,14 @@ const Page = async () => {
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader className='pb-2'>
+              <CardHeader className="pb-2">
                 <CardDescription>Last Month</CardDescription>
-                <CardTitle className='text-4xl'>
+                <CardTitle className="text-4xl">
                   {formatPrice(lastMonthSum._sum.amount ?? 0)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className='text-sm text-muted-foreground'>
+                <div className="text-sm text-muted-foreground">
                   of {formatPrice(MONTHLY_GOAL)} goal
                 </div>
               </CardContent>
@@ -117,38 +117,47 @@ const Page = async () => {
             </Card>
           </div>
 
-          <h1 className='text-4xl font-bold tracking-tight'>Incoming orders</h1>
+          <h1 className="text-4xl font-bold tracking-tight">Incoming orders</h1>
 
-          <Table>
-            <TableHeader>
+          <Table className="w-full bg-white shadow-md rounded-xl overflow-x-auto md:overflow-hidden border border-gray-300">
+            <TableHeader className="bg-gray-100">
               <TableRow>
-                <TableHead>Customer</TableHead>
-                <TableHead className='hidden sm:table-cell'>Status</TableHead>
-                <TableHead className='hidden sm:table-cell'>
+                <TableHead className="text-gray-700 font-semibold px-4 py-3">
+                  Customer
+                </TableHead>
+                <TableHead className="hidden sm:table-cell text-gray-700 font-semibold px-4 py-3">
+                  Status
+                </TableHead>
+                <TableHead className="hidden sm:table-cell text-gray-700 font-semibold px-4 py-3">
                   Purchase date
                 </TableHead>
-                <TableHead className='text-right'>Amount</TableHead>
+                <TableHead className="text-right text-gray-700 font-semibold px-4 py-3">
+                  Amount
+                </TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
               {orders.map((order) => (
-                <TableRow key={order.id} className='bg-accent'>
-                  <TableCell>
-                    <div className='font-medium'>
+                <TableRow
+                  key={order.id}
+                  className="bg-white even:bg-gray-50 hover:bg-gray-100 transition-colors duration-200"
+                >
+                  <TableCell className="px-4 py-4">
+                    <div className="font-medium text-gray-900">
                       {order.shippingAddress?.name}
                     </div>
-                    <div className='hidden text-sm text-muted-foreground md:inline'>
+                    <div className="hidden text-sm text-gray-500 md:inline">
                       {order.user.email}
                     </div>
                   </TableCell>
-                  <TableCell className='hidden sm:table-cell'>
+                  <TableCell className="hidden sm:table-cell px-4 py-4">
                     <StatusDropdown id={order.id} orderStatus={order.status} />
                   </TableCell>
-                  <TableCell className='hidden md:table-cell'>
+                  <TableCell className="hidden md:table-cell px-4 py-4 text-gray-600">
                     {order.createdAt.toLocaleDateString()}
                   </TableCell>
-                  <TableCell className='text-right'>
+                  <TableCell className="px-4 py-4 text-right text-gray-900 font-medium">
                     {formatPrice(order.amount)}
                   </TableCell>
                 </TableRow>
@@ -158,7 +167,7 @@ const Page = async () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
