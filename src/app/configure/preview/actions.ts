@@ -72,11 +72,36 @@ export const createCheckoutSession = async ({
     payment_method_types: ["card"],
     mode: "payment",
     shipping_address_collection: { allowed_countries: ["DE", "US" , "IN"] },
+     shipping_options: [
+    {
+      shipping_rate_data: {
+        display_name: "Free Shipping",
+        type: "fixed_amount",
+        fixed_amount: {
+          amount: 0,
+          currency: "usd",
+        },
+      },
+    },
+  ],
     metadata: {
       userId: user.id,
       orderId: order.id,
     },
-    line_items: [{ price: product.default_price as string, quantity: 1 }],
+    // line_items: [{ price: product.default_price as string, quantity: 1 }],
+    line_items: [
+    {
+      price_data: {
+        currency: "USD",
+        unit_amount: price,
+        product_data: {
+          name: "Custom iPhone Case",
+          images: [configuration.imageUrl],
+        },
+      },
+      quantity: 1,
+    },
+  ],
   });
 
   return { url: stripeSession.url };
