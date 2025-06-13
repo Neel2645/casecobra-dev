@@ -83,7 +83,7 @@ import DesignConfigurator from './DesignConfigurator'
 
 interface PageProps {
   searchParams: {
-    [key: string]: string | string[] | undefined
+    [key: string]: string 
   }
 }
 
