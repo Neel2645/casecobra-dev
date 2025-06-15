@@ -23,10 +23,10 @@ const OrderReceivedEmail = ({
   orderId: string;
   orderDate: string;
 }) => {
-  const baseUrl = "http://localhost:3000/";
-    // process.env.NODE_ENV === "development"
-    //   ? "http://localhost:3000/"
-    //   : "http://localhost:3000/";
+  const baseUrl = "http://localhost:3000";
+  // process.env.NODE_ENV === "development"
+  //   ? "http://localhost:3000/"
+  //   : "http://localhost:3000/";
 
   return (
     <Html>
@@ -36,7 +36,8 @@ const OrderReceivedEmail = ({
         <Container style={container}>
           <Section style={message}>
             <Img
-              src={`${baseUrl}/snake-3.png`}
+              // src={`${baseUrl}/snake-3.png`}
+              src="https://raw.githubusercontent.com/Neel2645/casecobra-dev/main/public/snake-3.png"
               width="65"
               height="73"
               alt="delivery snake"
@@ -62,15 +63,13 @@ const OrderReceivedEmail = ({
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
-              <Column style={{ width: 170 }}>
-                <Text style={global.paragraphWithBold}>Order Number</Text>
-                <Text style={track.number}>{orderId}</Text>
-              </Column>
-              <Column style={{ marginLeft: 20 }}>
-                <Text style={global.paragraphWithBold}>Order Date</Text>
-                <Text style={track.number}>{orderDate}</Text>
-              </Column>
+            <Row style={{ marginBottom: 20 }}>
+              <Text style={global.paragraphWithBold}>Order Number</Text>
+              <Text style={track.number}>{orderId}</Text>
+            </Row>
+            <Row style={{ marginBottom: 40 }}>
+              <Text style={global.paragraphWithBold}>Order Date</Text>
+              <Text style={track.number}>{orderDate}</Text>
             </Row>
           </Section>
 

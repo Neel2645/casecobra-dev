@@ -6,10 +6,14 @@ import { useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import PhonePreview from "@/components/PhonePreview";
+import Confetti from "react-dom-confetti";
+import { useEffect, useState } from "react";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId") || "";
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
+  useEffect(() => setShowConfetti(true));
 
   const { data } = useQuery({
     queryKey: ["get-payment-status"],
@@ -44,9 +48,19 @@ const ThankYou = () => {
 
   const { configuration, billingAddress, shippingAddress, amount } = data;
   const { color } = configuration;
+  
 
   return (
     <div className="bg-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute inset-0 overflow-hidden flex justify-center"
+      >
+        <Confetti
+          active={showConfetti}
+          config={{ elementCount: 500, spread: 200 }}
+        />
+      </div>
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="max-w-xl">
           <p className="text-base font-medium text-primary">Thank you!</p>

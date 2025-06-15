@@ -71,7 +71,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       >
         <Confetti
           active={showConfetti}
-          config={{ elementCount: 200, spread: 90 }}
+          config={{ elementCount: 500, spread: 200 }}
         />
       </div>
 
