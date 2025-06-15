@@ -9,7 +9,7 @@ const Page = async ({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
-  const { id } = searchParams || {};
+  const { id } = await searchParams || {};
 
   if (!id || typeof id !== "string") {
     return notFound();

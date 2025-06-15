@@ -80,15 +80,16 @@ export async function POST(req: Request) {
         react: OrderReceivedEmail({
           orderId,
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
-          // @ts-ignore
-          shippingAddress: {
-            name: session.customer_details!.name!,
-            city: shippingAddress!.city!,
-            country: shippingAddress!.country!,
-            postalCode: shippingAddress!.postal_code!,
-            street: shippingAddress!.line1!,
-            state: shippingAddress!.state,
-          },
+         shippingAddress: {
+           name: session.collected_information!.shipping_details!.name!,
+           city: shippingAddress!.city!,
+           country: shippingAddress!.country!,
+           postalCode: shippingAddress!.postal_code!,
+           street: shippingAddress!.line1!,
+           state: shippingAddress!.state!,
+           id: "",
+           phoneNumber: null
+         },
         }),
       });
     }
