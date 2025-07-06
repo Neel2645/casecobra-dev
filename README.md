@@ -39,12 +39,6 @@ CaseCobra is a fully responsive, end-to-end custom phone case building and shopp
 
 
 
-## 🎥 Demo Video
-
-▶️ [Watch Demo Video](https://drive.google.com/file/d/VIDEO_ID/view)
-
-
-
 ## 🔧 Setup Instructions
 
 1. **Clone the Repository**
