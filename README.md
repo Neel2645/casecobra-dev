@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐍 CaseCobra - The Ultimate Phone Case Customization Store
 
-## Getting Started
+CaseCobra is a fully responsive, end-to-end custom phone case building and shopping platform where users can create, preview, and purchase their personalized phone cases — all within a beautiful, smooth, and secure web experience.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* 🛠️ **Full-stack E-commerce Store** built from scratch in **Next.js 15**
+* 💻 **Beautiful Landing Page** with smooth animations using **Framer Motion**
+* 🔐 **Authentication** powered by **Kinde**
+* 💳 **Stripe Payment Gateway** with secure checkout
+* 📦 **Admin Dashboard** to manage orders (protected access)
+* ✉️ **Order Confirmation & Thank You Emails** via **Resend**
+* 🖥️ **Mobile-First Design** with stunning UI components from shadcn/ui
+* 🖥️ **Drag-and-Drop Image Upload** with **UploadThing**
+* 📱 **100% Mobile Responsive** with modern UI powered by **shadcn/ui** & **Tailwind CSS**
+* 🔑 **Secure Webhooks** for order protection
+* ⚙️ **Type-safe Backend** using **Prisma ORM** & **NeonDB**
+* ⌨️ **Fully Typed Codebase** written in **TypeScript**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 🛠 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Technology        | Purpose                    |
+| ----------------- | -------------------------- |
+| **Next.js 15**    | Full-stack React framework |
+| **React.js**      | Frontend library           |
+| **Tailwind CSS**  | Styling                    |
+| **shadcn/ui**     | UI components              |
+| **Framer Motion** | Animations                 |
+| **Prisma**        | ORM                        |
+| **NeonDB**        | Database                   |
+| **Kinde**         | Authentication             |
+| **Stripe**        | Payments                   |
+| **Resend**        | Email handling             |
+| **UploadThing**   | File uploads               |
+| **TypeScript**    | Type safety                |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 🔧 Setup Instructions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the Repository**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/yourusername/casecobra.git
+   cd casecobra
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**
+   Create a `.env` file and add:
+
+   ```
+
+    KINDE_CLIENT_ID=
+    KINDE_CLIENT_SECRET=
+    KINDE_ISSUER_URL=
+    KINDE_SITE_URL=
+    KINDE_POST_LOGOUT_REDIRECT_URL=
+    KINDE_POST_LOGIN_REDIRECT_URL=
+    ADMIN_EMAIL=
+    UPLOADTHING_SECRET=
+    UPLOADTHING_APP_ID=
+    UPLOADTHING_TOKEN=
+    DATABASE_URL=
+    STRIPE_SECRET_KEY=
+    NEXT_PUBLIC_SERVER_URL=
+    STRIPE_WEBHOOK_SECRET=
+    RESEND_API_KEY=
+
+   ```
+
+4. **Run Prisma Migrations**
+
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev
+   ```
+
+5. **Start the Development Server**
+
+   ```bash
+   npm run dev 
+   stripe listen --forward-to localhost:3000/api/webhook
+   ```
+
+
+
+## 🌟 Key Highlights
+
+* 🔄 Real-time updates and interactions
+* 🎨 Pixel-perfect UI inspired by premium design systems
+* 💬 Beautiful transactional emails after successful purchases
+* 🔒 Secure authentication and authorization
+
+
+
+## 📬 Feedback & Contributions
+
+Contributions, issues, and feature requests are welcome!
+Feel free to open an issue or submit a pull request.
+
+
+
+## 📄 License
+
+MIT License. Feel free to use, modify, and share.
+
+
+
+## 🔗 Connect with Me
+
+* 💼 [LinkedIn](https://www.linkedin.com/in/neelsathvara/)
+* 🐙 [GitHub](https://github.com/Neel2645)
+
+
+
+### 🌟 If you like this project, give it a ⭐️!
+
+
+
